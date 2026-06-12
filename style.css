@@ -12,18 +12,16 @@
   --mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #101216;
-    --text: #e9eaec;
-    --muted: #a3a9b3;
-    --faint: #6b7280;
-    --accent: #4fd1b0;
-    --accent-2: #2e9e84;
-    --accent-soft: #16241f;
-    --rule: #2a2e36;
-    --dot: #23272f;
-  }
+:root[data-theme="dark"] {
+  --bg: #101216;
+  --text: #e9eaec;
+  --muted: #a3a9b3;
+  --faint: #6b7280;
+  --accent: #4fd1b0;
+  --accent-2: #2e9e84;
+  --accent-soft: #16241f;
+  --rule: #2a2e36;
+  --dot: #23272f;
 }
 
 * { box-sizing: border-box; }
@@ -68,6 +66,29 @@ a {
   transition: text-decoration-color 0.15s;
 }
 a:hover { text-decoration-color: var(--accent); }
+
+/* ===================== Färglägesväxlare ===================== */
+#theme-toggle {
+  position: fixed;
+  top: 14px;
+  right: 16px;
+  z-index: 11;
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  line-height: 1;
+  color: var(--muted);
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 7px 10px;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+#theme-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
 
 /* ===================== Läsförlopp ===================== */
 #progress {
@@ -345,15 +366,16 @@ html.js .reveal.visible {
 
 /* ===================== Utskrift ===================== */
 @media print {
-  :root {
+  :root, :root[data-theme="dark"] {
     --bg: #ffffff;
     --text: #000000;
     --muted: #333333;
     --faint: #555555;
     --accent: #0d5c4d;
     --rule: #cccccc;
+    --dot: #ffffff;
   }
-  body::before, #progress { display: none; }
+  body::before, #progress, #theme-toggle { display: none; }
   html.js .reveal { opacity: 1; transform: none; }
   .hero h1 {
     background: none;

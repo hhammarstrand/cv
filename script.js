@@ -1,5 +1,19 @@
 document.documentElement.classList.add('js');
 
+// Färglägesväxlare
+const toggle = document.getElementById('theme-toggle');
+function renderToggle() {
+  const dark = document.documentElement.dataset.theme === 'dark';
+  toggle.textContent = dark ? '☀' : '☾';
+}
+toggle.addEventListener('click', () => {
+  const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+  document.documentElement.dataset.theme = next;
+  localStorage.setItem('theme', next);
+  renderToggle();
+});
+renderToggle();
+
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // Läsförloppsindikator
