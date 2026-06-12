@@ -5,6 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="CV – Hugo Hammarstrand, Chef Digitalt Produktionsstöd">
   <title>Hugo Hammarstrand — CV</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="canonical" href="https://hhammarstrand.github.io/cv/">
+  <link rel="alternate" hreflang="sv" href="https://hhammarstrand.github.io/cv/">
+  <link rel="alternate" hreflang="en" href="https://hhammarstrand.github.io/cv/en/">
+
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="Hugo Hammarstrand — CV">
+  <meta property="og:description" content="Chef Digitalt Produktionsstöd på Peab Anläggning AB. 12+ år i byggbranschen, byggde upp koncernens drönarverksamhet från 2 till ~100 piloter.">
+  <meta property="og:url" content="https://hhammarstrand.github.io/cv/">
+  <meta property="og:image" content="https://hhammarstrand.github.io/cv/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="sv_SE">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Hugo Hammarstrand — CV">
+  <meta name="twitter:description" content="Chef Digitalt Produktionsstöd på Peab Anläggning AB.">
+  <meta name="twitter:image" content="https://hhammarstrand.github.io/cv/og-image.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Hugo Hammarstrand",
+    "jobTitle": "Chef Digitalt Produktionsstöd",
+    "worksFor": { "@type": "Organization", "name": "Peab Anläggning AB" },
+    "email": "mailto:hhammarstrand@gmail.com",
+    "url": "https://hhammarstrand.github.io/cv/",
+    "sameAs": [
+      "https://www.linkedin.com/in/hhammarstrand/",
+      "https://github.com/hhammarstrand"
+    ],
+    "knowsLanguage": ["sv", "en"]
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -13,7 +48,11 @@
 </head>
 <body>
   <div id="progress" aria-hidden="true"></div>
-  <button id="theme-toggle" type="button" aria-label="Växla färgläge">☾</button>
+  <nav class="toolbar">
+    <a class="tool" href="en/" lang="en" aria-label="Switch to English">EN</a>
+    <button class="tool" id="pdf-btn" type="button" aria-label="Ladda ner som PDF">PDF</button>
+    <button class="tool" id="theme-toggle" type="button" aria-label="Växla färgläge">☾</button>
+  </nav>
   <div class="page">
 
     <!-- ===================== SIDHUVUD ===================== -->
@@ -310,6 +349,7 @@
 
     <footer>
       <p>© 2026 Hugo Hammarstrand · <a href="mailto:hhammarstrand@gmail.com">hhammarstrand@gmail.com</a></p>
+      <p class="hint" aria-hidden="true">// psst — tryck <kbd>T</kbd></p>
     </footer>
 
   </div>
