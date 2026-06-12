@@ -5,8 +5,10 @@
   --muted: #585f6b;
   --faint: #8a909b;
   --accent: #0d5c4d;
+  --accent-2: #1d8a72;
   --accent-soft: #e7efec;
   --rule: #d9dbd6;
+  --dot: #d2d5cf;
   --mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
@@ -17,12 +19,16 @@
     --muted: #a3a9b3;
     --faint: #6b7280;
     --accent: #4fd1b0;
+    --accent-2: #2e9e84;
     --accent-soft: #16241f;
     --rule: #2a2e36;
+    --dot: #23272f;
   }
 }
 
 * { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
@@ -33,7 +39,22 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Subtilt punktraster bakom övre delen av sidan */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(var(--dot) 1px, transparent 1px);
+  background-size: 24px 24px;
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent 55%);
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent 55%);
+  pointer-events: none;
+  z-index: 0;
+}
+
 .page {
+  position: relative;
+  z-index: 1;
   max-width: 760px;
   margin: 0 auto;
   padding: 72px 28px 48px;
@@ -48,6 +69,17 @@ a {
 }
 a:hover { text-decoration-color: var(--accent); }
 
+/* ===================== Läsförlopp ===================== */
+#progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  z-index: 10;
+}
+
 /* ===================== Sidhuvud ===================== */
 .overline {
   font-family: var(--mono);
@@ -58,12 +90,21 @@ a:hover { text-decoration-color: var(--accent); }
   margin: 0 0 14px;
 }
 
+.overline::before {
+  content: "// ";
+  color: var(--faint);
+}
+
 .hero h1 {
   margin: 0;
-  font-size: 2.6rem;
+  font-size: 2.8rem;
   font-weight: 800;
   letter-spacing: -0.03em;
-  line-height: 1.1;
+  line-height: 1.08;
+  background: linear-gradient(120deg, var(--text) 55%, var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .hero .title {
@@ -99,6 +140,46 @@ a:hover { text-decoration-color: var(--accent); }
   letter-spacing: 0.08em;
 }
 
+/* ===================== Nyckeltal ===================== */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.stat {
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 14px 16px;
+  background: color-mix(in srgb, var(--bg) 70%, transparent);
+  backdrop-filter: blur(2px);
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.stat:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.stat-num {
+  display: block;
+  font-family: var(--mono);
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--accent);
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
 /* ===================== Sektioner ===================== */
 section {
   margin-top: 56px;
@@ -123,14 +204,34 @@ h2 .index {
   color: var(--accent);
 }
 
-/* ===================== Poster ===================== */
+/* ===================== Poster / tidslinje ===================== */
 .entry {
+  position: relative;
   margin-bottom: 30px;
-  padding-left: 18px;
+  padding-left: 22px;
   border-left: 2px solid var(--rule);
+  transition: border-left-color 0.25s;
 }
 .entry:last-child { margin-bottom: 0; }
 .entry:hover { border-left-color: var(--accent); }
+
+/* Tidslinjepunkt */
+.entry::before {
+  content: "";
+  position: absolute;
+  left: -6px;
+  top: 7px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--faint);
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+.entry:hover::before {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
 
 .entry-header {
   display: flex;
@@ -183,6 +284,12 @@ h2 .index {
   background: var(--accent-soft);
   padding: 3px 10px;
   border-radius: 4px;
+  transition: color 0.15s, transform 0.15s;
+}
+
+.tags li:hover {
+  color: var(--accent);
+  transform: translateY(-1px);
 }
 
 /* ===================== Kompetenser ===================== */
@@ -207,10 +314,32 @@ footer {
   color: var(--faint);
 }
 
+/* ===================== Scroll-animationer ===================== */
+/* Aktiveras bara när JS finns (html.js) så att sidan funkar utan skript */
+html.js .reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+html.js .reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  html.js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .stat, .tags li, .entry, .entry::before { transition: none; }
+}
+
 /* ===================== Mobil ===================== */
 @media (max-width: 600px) {
   .page { padding: 40px 18px 32px; }
-  .hero h1 { font-size: 2rem; }
+  .hero h1 { font-size: 2.1rem; }
   section { margin-top: 40px; }
 }
 
@@ -223,6 +352,13 @@ footer {
     --faint: #555555;
     --accent: #0d5c4d;
     --rule: #cccccc;
+  }
+  body::before, #progress { display: none; }
+  html.js .reveal { opacity: 1; transform: none; }
+  .hero h1 {
+    background: none;
+    -webkit-text-fill-color: initial;
+    color: #000;
   }
   .page { padding: 0; max-width: none; }
   section { margin-top: 28px; }
