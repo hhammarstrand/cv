@@ -168,46 +168,6 @@ a:hover { text-decoration-color: var(--accent); }
   letter-spacing: 0.08em;
 }
 
-/* ===================== Nyckeltal ===================== */
-.stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 14px;
-  margin-top: 28px;
-}
-
-.stat {
-  border: 1px solid var(--rule);
-  border-radius: 10px;
-  padding: 14px 16px;
-  background: color-mix(in srgb, var(--bg) 70%, transparent);
-  backdrop-filter: blur(2px);
-  transition: border-color 0.2s, transform 0.2s;
-}
-
-.stat:hover {
-  border-color: var(--accent);
-  transform: translateY(-2px);
-}
-
-.stat-num {
-  display: block;
-  font-family: var(--mono);
-  font-size: 1.5rem;
-  font-weight: 500;
-  color: var(--accent);
-  line-height: 1.2;
-  font-variant-numeric: tabular-nums;
-}
-
-.stat-label {
-  display: block;
-  font-size: 0.78rem;
-  color: var(--muted);
-  margin-top: 4px;
-  line-height: 1.4;
-}
-
 /* ===================== Sektioner ===================== */
 section {
   margin-top: 56px;
@@ -527,7 +487,7 @@ html.js .reveal.visible {
     transform: none;
     transition: none;
   }
-  .stat, .tags li, .entry, .entry::before { transition: none; }
+  .tags li, .entry, .entry::before { transition: none; }
 }
 
 /* ===================== Mobil ===================== */
