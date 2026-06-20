@@ -2,22 +2,6 @@ document.documentElement.classList.add('js');
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// Färglägesväxlare
-const toggle = document.getElementById('theme-toggle');
-function renderToggle() {
-  const dark = document.documentElement.dataset.theme === 'dark';
-  toggle.textContent = dark ? '☀' : '☾';
-}
-function setTheme(next) {
-  document.documentElement.dataset.theme = next;
-  localStorage.setItem('theme', next);
-  renderToggle();
-}
-toggle.addEventListener('click', () => {
-  setTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark');
-});
-renderToggle();
-
 // PDF via utskriftsdialogen (utskriftsstilen ger en ren pappersversion)
 document.getElementById('pdf-btn').addEventListener('click', () => window.print());
 
@@ -74,7 +58,6 @@ revealEls.forEach(el => revealObserver.observe(el));
       '  projects    selected projects\n' +
       '  skills      what I bring\n' +
       '  contact     get in touch\n' +
-      '  theme       toggle dark/light\n' +
       '  clear       clear terminal\n' +
       '  exit        close terminal (or Esc)',
     whoami: () =>
@@ -93,11 +76,6 @@ revealEls.forEach(el => revealObserver.observe(el));
       'leadership · portfolio mgmt · change mgmt\nBIM · UAS · GIS · photogrammetry\nAI agents · Copilot Studio · Proxmox homelab',
     contact: () =>
       'mail      hhammarstrand@gmail.com\nlinkedin  linkedin.com/in/hhammarstrand',
-    theme: () => {
-      const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-      setTheme(next);
-      return 'theme → ' + next;
-    },
   };
 
   let term = null;

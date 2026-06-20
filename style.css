@@ -12,18 +12,6 @@
   --mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
-:root[data-theme="dark"] {
-  --bg: #101216;
-  --text: #e9eaec;
-  --muted: #a3a9b3;
-  --faint: #6b7280;
-  --accent: #4fd1b0;
-  --accent-2: #2e9e84;
-  --accent-soft: #16241f;
-  --rule: #2a2e36;
-  --dot: #23272f;
-}
-
 * { box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
@@ -499,7 +487,7 @@ html.js .reveal.visible {
 
 /* ===================== Utskrift ===================== */
 @media print {
-  :root, :root[data-theme="dark"] {
+  :root {
     --bg: #ffffff;
     --text: #000000;
     --muted: #333333;
