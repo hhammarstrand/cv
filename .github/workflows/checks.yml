@@ -31,10 +31,12 @@ jobs:
         with:
           # LinkedIn blockerar botar (svarar 999) — undanta den.
           # mailto:-länkar hoppas över som standard i lychee ≥ 0.15.
+          # 404.html utelämnas: dess rot-relativa /cv/-länkar finns bara på
+          # den deployade sajten och kan inte lösas mot repot lokalt.
           args: >-
             --no-progress
             --exclude 'linkedin\.com'
-            index.html en/index.html 404.html README.md
+            index.html en/index.html README.md
           fail: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
