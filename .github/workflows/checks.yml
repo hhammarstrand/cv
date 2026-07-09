@@ -30,9 +30,9 @@ jobs:
         uses: lycheeverse/lychee-action@v2
         with:
           # LinkedIn blockerar botar (svarar 999) — undanta den.
+          # mailto:-länkar hoppas över som standard i lychee ≥ 0.15.
           args: >-
             --no-progress
-            --exclude-mail
             --exclude 'linkedin\.com'
             index.html en/index.html 404.html README.md
           fail: true
