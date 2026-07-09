@@ -1,0 +1,40 @@
+name: Checks
+
+on:
+  push:
+    branches:
+      - claude/github-pages-cv-site-80w0sm
+      - main
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  html-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validate HTML
+        run: npx --yes html-validate@8 index.html en/index.html 404.html
+
+  links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          # LinkedIn blockerar botar (svarar 999) — undanta den.
+          args: >-
+            --no-progress
+            --exclude-mail
+            --exclude 'linkedin\.com'
+            index.html en/index.html 404.html README.md
+          fail: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

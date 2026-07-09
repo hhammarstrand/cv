@@ -3,6 +3,9 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
+      # OBS: två deploy-brancher = senast pushad vinner. Repot saknar idag
+      # main; ta bort arbetsbranchen härifrån så fort innehållet flyttats
+      # till main, annars kan en push till endera branchen skriva över sajten.
       - claude/github-pages-cv-site-80w0sm
       - main
   workflow_dispatch:

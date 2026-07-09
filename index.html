@@ -9,6 +9,7 @@
   <link rel="canonical" href="https://hhammarstrand.github.io/cv/">
   <link rel="alternate" hreflang="sv" href="https://hhammarstrand.github.io/cv/">
   <link rel="alternate" hreflang="en" href="https://hhammarstrand.github.io/cv/en/">
+  <link rel="alternate" hreflang="x-default" href="https://hhammarstrand.github.io/cv/">
 
   <meta property="og:type" content="profile">
   <meta property="og:title" content="Hugo Hammarstrand — CV">
@@ -17,7 +18,9 @@
   <meta property="og:image" content="https://hhammarstrand.github.io/cv/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Hugo Hammarstrand — Chef Digitalt Produktionsstöd, Peab Anläggning AB">
   <meta property="og:locale" content="sv_SE">
+  <meta property="og:locale:alternate" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Hugo Hammarstrand — CV">
   <meta name="twitter:description" content="Chef Digitalt Produktionsstöd på Peab Anläggning AB.">
@@ -40,14 +43,13 @@
   }
   </script>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div id="progress" aria-hidden="true"></div>
-  <nav class="toolbar">
+  <nav class="toolbar" aria-label="Verktyg">
     <a class="tool" href="en/" lang="en" aria-label="Switch to English">EN</a>
     <button class="tool" id="pdf-btn" type="button" aria-label="Ladda ner som PDF">PDF</button>
   </nav>
@@ -149,6 +151,7 @@
       <!-- ===================== PROJEKT ===================== -->
       <section id="projekt">
         <h2><span class="index">02</span>Projekt i urval</h2>
+        <p class="section-intro">Årtalen avser projektens byggtid.</p>
 
         <article class="entry">
           <div class="entry-header">

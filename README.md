@@ -1,24 +1,32 @@
-# CV – GitHub Pages
+# CV — hhammarstrand.github.io/cv
 
-En statisk CV-sida byggd med ren HTML och CSS, redo att publiceras via GitHub Pages.
+Mitt CV som statisk webbsida, publicerad via GitHub Pages. Svenska på
+[`/`](https://hhammarstrand.github.io/cv/) och engelska på
+[`/en/`](https://hhammarstrand.github.io/cv/en/).
 
-## Kom igång
+## Struktur
 
-1. **Fyll i ditt innehåll** – öppna `index.html` och byt ut platshållartexterna
-   (namn, titel, erfarenheter, utbildning, kompetenser) mot dina egna uppgifter.
-2. **Slå ihop till `main`** (eller publicera direkt från denna branch).
-3. **Aktivera GitHub Pages:**
-   - Gå till repots **Settings → Pages**
-   - Under *Build and deployment*, välj **Deploy from a branch**
-   - Välj branch `main` och mappen `/ (root)`, klicka **Save**
-4. Efter någon minut finns sidan på **https://hhammarstrand.github.io/cv/**
+| Fil | Innehåll |
+| --- | --- |
+| `index.html` | Svenska CV:t |
+| `en/index.html` | Engelska CV:t |
+| `style.css` | All styling, inklusive utskriftsstil |
+| `script.js` | Läsförlopp, skrivmaskinseffekt, scroll-animationer, terminal-easter-egg (tryck `T`) |
+| `fonts/` | Självhostade Inter och JetBrains Mono (variabla woff2, latin-subset, OFL) |
+| `tools/generate-og.py` | Genererar delningsbilderna `og-image.png` och `og-image-en.png` |
+| `.github/workflows/deploy-pages.yml` | Deploy till GitHub Pages vid push |
+| `.github/workflows/checks.yml` | HTML-validering och länkkontroll |
 
-## Anpassning
+## Att tänka på vid innehållsändringar
 
-- Färger och typsnitt styrs av CSS-variablerna högst upp i `style.css`
-  (`--accent`, `--bg` m.fl.). Sidan har automatiskt mörkt läge som följer
-  systeminställningen.
-- Sidan är responsiv och har en utskriftsvänlig stil – `Ctrl/Cmd + P` ger en
-  ren pappersversion av ditt CV.
-- Sektionen **Projekt** är valfri – ta bort den i `index.html` om du inte vill
-  ha den.
+- **Tre kopior av innehållet:** `index.html`, `en/index.html` och terminalens
+  `COMMANDS` i `script.js` måste uppdateras tillsammans.
+- **Delningsbilderna** speglar titel och taggar — kör
+  `python3 tools/generate-og.py` (kräver Pillow) och checka in de nya
+  PNG-filerna om något av det ändras.
+- Sidan fungerar utan JavaScript; animationer respekterar
+  `prefers-reduced-motion`. `Ctrl/Cmd + P` (eller PDF-knappen) ger en ren
+  pappersversion via utskriftsstilen.
+- Färger styrs av CSS-variablerna högst upp i `style.css`. Håll kontrasten:
+  `--faint` används för brödtextnära detaljer och ska klara WCAG AA (4,5:1)
+  mot `--bg`.

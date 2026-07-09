@@ -14,15 +14,23 @@ function updateProgress() {
 window.addEventListener('scroll', updateProgress, { passive: true });
 updateProgress();
 
-// Skrivmaskinseffekt i overlinen
+// Skrivmaskinseffekt i overlinen.
+// Hela texten ligger kvar i en sr-only-span så skärmläsare inte får halva ord;
+// det animerade är dolt för hjälpmedel.
 const overline = document.querySelector('.overline');
 if (overline && !reducedMotion) {
   const full = overline.textContent;
+  const srText = document.createElement('span');
+  srText.className = 'sr-only';
+  srText.textContent = full;
+  const anim = document.createElement('span');
+  anim.setAttribute('aria-hidden', 'true');
   const textNode = document.createTextNode('');
   const caret = document.createElement('span');
   caret.className = 'caret';
+  anim.append(textNode, caret);
   overline.textContent = '';
-  overline.append(textNode, caret);
+  overline.append(srText, anim);
   let i = 0;
   const timer = setInterval(() => {
     textNode.textContent = full.slice(0, ++i);
@@ -50,6 +58,8 @@ revealEls.forEach(el => revealObserver.observe(el));
 
 // Terminal (easter egg: tryck T)
 (function () {
+  // OBS: innehållet nedan duplicerar CV:t i index.html/en/index.html —
+  // uppdatera det här när CV:t ändras.
   const COMMANDS = {
     help: () =>
       'available commands:\n' +
@@ -79,6 +89,7 @@ revealEls.forEach(el => revealObserver.observe(el));
   };
 
   let term = null;
+  let lastFocus = null;
 
   function print(text, cls) {
     const out = term.querySelector('#term-out');
@@ -90,6 +101,7 @@ revealEls.forEach(el => revealObserver.observe(el));
   }
 
   function open() {
+    lastFocus = document.activeElement;
     const backdrop = document.createElement('div');
     backdrop.id = 'term-backdrop';
     backdrop.addEventListener('click', close);
@@ -97,11 +109,12 @@ revealEls.forEach(el => revealObserver.observe(el));
     term = document.createElement('div');
     term.id = 'term';
     term.setAttribute('role', 'dialog');
+    term.setAttribute('aria-modal', 'true');
     term.setAttribute('aria-label', 'Terminal');
     term.innerHTML =
       '<header><span>hugo@cv:~</span><span>esc to close</span></header>' +
       '<div id="term-out"></div>' +
-      '<form><span class="prompt">$</span><input type="text" autocomplete="off" spellcheck="false" aria-label="Kommando"></form>';
+      '<form><span class="prompt">$</span><input type="text" autocomplete="off" spellcheck="false" aria-label="Command"></form>';
 
     document.body.append(backdrop, term);
     print("welcome to hugo's cv — type 'help' to get started");
@@ -121,6 +134,13 @@ revealEls.forEach(el => revealObserver.observe(el));
       const fn = COMMANDS[cmd];
       print(fn ? fn() : "command not found: " + cmd + " (try 'help')");
     });
+    // Enkel fokusfälla: input är enda fokuserbara elementet i dialogen
+    term.addEventListener('keydown', e => {
+      if (e.key === 'Tab') {
+        e.preventDefault();
+        input.focus();
+      }
+    });
     input.focus();
   }
 
@@ -128,6 +148,8 @@ revealEls.forEach(el => revealObserver.observe(el));
     document.getElementById('term-backdrop')?.remove();
     term?.remove();
     term = null;
+    lastFocus?.focus?.();
+    lastFocus = null;
   }
 
   document.addEventListener('keydown', e => {

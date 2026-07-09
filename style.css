@@ -1,9 +1,27 @@
+/* ===================== Typsnitt (självhostade, latin-subset) ===================== */
+/* Variabla fonter från Google Fonts (Inter v20, JetBrains Mono v24), OFL-licens.
+   Tecken utanför latin-subsetet (t.ex. →, ↗) faller tillbaka på systemfont. */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("fonts/inter-latin.woff2") format("woff2");
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: swap;
+  src: url("fonts/jetbrains-mono-latin.woff2") format("woff2");
+}
+
 /* ===================== Grund ===================== */
 :root {
   --bg: #fafaf8;
   --text: #16181d;
   --muted: #585f6b;
-  --faint: #8a909b;
+  --faint: #6b717e; /* håll ≥ 4.5:1 mot --bg (WCAG AA) — används för datum m.m. */
   --accent: #0d5c4d;
   --accent-2: #1d8a72;
   --accent-soft: #e7efec;
@@ -54,6 +72,18 @@ a {
   transition: text-decoration-color 0.15s;
 }
 a:hover { text-decoration-color: var(--accent); }
+
+/* Visuellt dold men läsbar för skärmläsare */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
 
 /* ===================== Verktygsrad ===================== */
 .toolbar {
