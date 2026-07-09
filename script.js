@@ -74,9 +74,10 @@ revealEls.forEach(el => revealObserver.observe(el));
       'Hugo Hammarstrand\nChef Digitalt Produktionsstöd @ Peab Anläggning AB\nBIM · drones · digital transformation',
     experience: () =>
       '2022–     Chef Digitalt Produktionsstöd, Peab Anläggning\n' +
-      '2018–22   BIM coordinator / drone program lead (group-wide)\n' +
-      '2016–18   BIM coordinator / drone pilot\n' +
-      '2014–16   Surveyor / drone pilot',
+      '2019–22   BIM coordinator (drone program lead 2018–22)\n' +
+      '2016–19   BIM coordinator\n' +
+      '2015–16   Surveyor\n' +
+      '2014–15   Assistant surveyor / drone pilot',
     projects: () =>
       'E45 Lilla Bommen–Marieholm   1,023 MSEK   BIM coordination\n' +
       'Peab Air                     group-wide   2 → ~100 pilots\n' +
