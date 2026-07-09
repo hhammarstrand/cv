@@ -71,9 +71,9 @@ revealEls.forEach(el => revealObserver.observe(el));
       '  clear       clear terminal\n' +
       '  exit        close terminal (or Esc)',
     whoami: () =>
-      'Hugo Hammarstrand\nChef Digitalt Produktionsstöd @ Peab Anläggning AB\nBIM · drones · digital transformation',
+      'Hugo Hammarstrand\nHead of Digital Construction @ Peab Anläggning AB\nBIM · drones · digital transformation',
     experience: () =>
-      '2022–     Chef Digitalt Produktionsstöd, Peab Anläggning\n' +
+      '2022–     Head of Digital Construction, Peab Anläggning\n' +
       '2019–22   BIM coordinator (drone program lead 2018–22)\n' +
       '2016–19   BIM coordinator\n' +
       '2015–16   Surveyor\n' +

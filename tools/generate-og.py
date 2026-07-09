@@ -40,7 +40,7 @@ VARIANTS = {
         "tags": "BIM · Drönare · Digital transformation · Ledarskap",
     },
     "og-image-en.png": {
-        "title": "Head of Digital Production Support · Peab Anläggning AB",
+        "title": "Head of Digital Construction · Peab Anläggning AB",
         "tags": "BIM · Drones · Digital transformation · Leadership",
     },
 }
