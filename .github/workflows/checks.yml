@@ -3,7 +3,6 @@ name: Checks
 on:
   push:
     branches:
-      - claude/github-pages-cv-site-80w0sm
       - main
   pull_request:
   workflow_dispatch:
