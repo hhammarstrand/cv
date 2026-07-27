@@ -273,6 +273,22 @@ h2 .index {
   font-size: 0.95rem;
 }
 
+/* Meritpunkter under en post */
+.achievements {
+  margin: 10px 0 0;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.achievements li {
+  margin-bottom: 6px;
+}
+
+.achievements li::marker {
+  color: var(--accent);
+}
+
 /* ===================== Taggar ===================== */
 .tags {
   list-style: none;
